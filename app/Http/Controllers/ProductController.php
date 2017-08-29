@@ -35,7 +35,15 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $product  = new Product();
+       $product->name = $request->name;
+       $product->price = $request->price;
+       $product->description = $request->description;
+        $file = $request->file('imgUrl');
+
+        $destinationPath = 'uploads';
+        $file->move($destinationPath,$file->getClientOriginalName());
+        $product->save();
     }
 
     /**
