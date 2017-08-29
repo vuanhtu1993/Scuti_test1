@@ -39,8 +39,8 @@ class ProductController extends Controller
        $product->name = $request->name;
        $product->price = $request->price;
        $product->description = $request->description;
+//       save file 
         $file = $request->file('imgUrl');
-
         $destinationPath = 'uploads';
         $file->move($destinationPath,$file->getClientOriginalName());
         $product->save();
