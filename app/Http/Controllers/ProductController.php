@@ -14,7 +14,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        $products = Product::all();
+
+//        return view('products.index')
+        return view('products/index',compact('products'));
     }
 
     /**
@@ -35,15 +38,21 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+
+        ]);
        $product  = new Product();
        $product->name = $request->name;
        $product->price = $request->price;
        $product->description = $request->description;
-//       save file 
+//       save file
         $file = $request->file('imgUrl');
         $destinationPath = 'uploads';
         $file->move($destinationPath,$file->getClientOriginalName());
+        $product->link_img = $file->getClientOriginalName(); //save name of img
+
         $product->save();
+        return back();
     }
 
     /**
@@ -65,7 +74,7 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        return view('products.edit',compact('product'));
     }
 
     /**
@@ -77,7 +86,18 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+        //save file
+        if ($request->file('imgUrl')) {
+            $file = $request->file('imgUrl');
+            $destinationPath = 'uploads';
+            $file->move($destinationPath, $file->getClientOriginalName());
+            $product->link_img = $file->getClientOriginalName(); //save name of img
+        }
+        $product->save();
+        return back();
     }
 
     /**
@@ -88,6 +108,7 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+        return redirect('products');
     }
 }

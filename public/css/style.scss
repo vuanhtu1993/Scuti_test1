@@ -1,3 +1,25 @@
-.body{
+.products {
+  border: 1px solid #dbd4d4;
+  margin-bottom: 10px;
+  position: relative;
+  background-color: white;
+  .products-info{
+    padding-left: 10px;
+  }
+  .edit{
+    position: absolute;
+    bottom: 30px;
+    right: 5px;
+  }
+  .delete{
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    button {
+      background-color: transparent;
+      border: none;
+    }
+  }
 
 }
+

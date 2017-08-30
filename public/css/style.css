@@ -1,3 +1,20 @@
-
+.products {
+  border: 1px solid #dbd4d4;
+  margin-bottom: 10px;
+  position: relative;
+  background-color: white; }
+  .products .products-info {
+    padding-left: 10px; }
+  .products .edit {
+    position: absolute;
+    bottom: 30px;
+    right: 5px; }
+  .products .delete {
+    position: absolute;
+    bottom: 30px;
+    right: 30px; }
+    .products .delete button {
+      background-color: transparent;
+      border: none; }
 
 /*# sourceMappingURL=style.css.map */
