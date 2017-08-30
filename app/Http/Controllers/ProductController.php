@@ -38,21 +38,25 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // required input
         $this->validate($request,[
-
+            'name'=>'required|min:3|max:100'
+        ],[
+            'name.required'=>'Type name product please',
+            'name.min'=>'Name product from 3 to 100 digit',
+            'name.max'=>'Name product from 3 to 100 digit',
         ]);
        $product  = new Product();
        $product->name = $request->name;
        $product->price = $request->price;
        $product->description = $request->description;
-//       save file
+        //save file
         $file = $request->file('imgUrl');
         $destinationPath = 'uploads';
         $file->move($destinationPath,$file->getClientOriginalName());
         $product->link_img = $file->getClientOriginalName(); //save name of img
-
         $product->save();
-        return back();
+        return back()->with('message','create successful');
     }
 
     /**
