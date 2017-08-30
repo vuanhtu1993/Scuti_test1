@@ -8,11 +8,11 @@
   .products .edit {
     position: absolute;
     bottom: 30px;
-    right: 5px; }
+    right: 30px; }
   .products .delete {
     position: absolute;
     bottom: 30px;
-    right: 30px; }
+    right: 5px; }
     .products .delete button {
       background-color: transparent;
       border: none; }

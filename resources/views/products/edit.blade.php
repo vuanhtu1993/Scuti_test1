@@ -13,7 +13,7 @@
             <div class="col-sm-9 col-sm-9">
                 @if(session('message'))
                     <div class="alert-success">
-                        {{session('massage')}}
+                        {{session('message')}}
                     </div>
                 @endif
                 @if(count($errors)>0)
@@ -27,7 +27,7 @@
                 <form class="form-group" action="{{route('products.update',$product->id)}}" method="post" enctype="multipart/form-data" style="width: 100%">
                     {{csrf_field()}}
                     {{method_field('PUT')}}
-                    Name Product: <input class="form-control" type="text" name="name" value="{{$product->name}}">
+                    Name Product: <input class="form-control" type="text" name="name" value="{{$product->name}} ">
                     Price: <input class="form-control" type="text" name="price" value="{{$product->price}}">
                     Description:<input style="height: 100px;" class="form-control" type="text" name="description" value="{{$product->description}}">
                     <br>

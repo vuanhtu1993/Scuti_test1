@@ -40,17 +40,17 @@ class ProductController extends Controller
     {
         // required input
         $this->validate($request,[
-            'name'=>'required|min:3|max:100',
-            'price'=>'required|unique:products|min:4|numeric',
+            'name'=>'required|min:3|max:100||unique:products',
+            'price'=>'required|min:4|numeric',
             'description'=>'required|min:10|max:100',
             'imgUrl'=>'required'
         ],[
             'name.required'=>'Type name product please',
             'name.min'=>'Name product from 3 to 100 digit',
             'name.max'=>'Name product from 3 to 100 digit',
+            'name.unique:products'=>'unique price please',
             'price.required'=>'Type price product please',
-            'price.unique:products'=>'unique price please',
-            'price.min'=>'price product from 3 to 100 digit',
+            'price.min'=>'Price product from 3 to 100 digit',
             'price.numeric'=>'Price product wrong type',
             'description.required'=>'Type description product please',
             'description.min'=>'Description product from 10 to 100 digit',
@@ -67,7 +67,7 @@ class ProductController extends Controller
         $file->move($destinationPath,$file->getClientOriginalName());
         $product->link_img = $file->getClientOriginalName(); //save name of img
         $product->save();
-        return back()->with('message','create successful');
+        return redirect('/');
     }
 
     /**
@@ -103,15 +103,14 @@ class ProductController extends Controller
     {
         $this->validate($request,[
             'name'=>'required|min:3|max:100',
-            'price'=>'required|unique:products|min:4|numeric',
+            'price'=>'required|min:4|numeric',
             'description'=>'required|min:10|max:100',
         ],[
             'name.required'=>'Type name product please',
             'name.min'=>'Name product from 3 to 100 digit',
             'name.max'=>'Name product from 3 to 100 digit',
             'price.required'=>'Type price product please',
-            'price.unique:products'=>'unique price please',
-            'price.min'=>'price product from 3 to 100 digit',
+            'price.min'=>'Price product from 3 to 100 digit',
             'price.numeric'=>'Price product wrong type',
             'description.required'=>'Type description product please',
             'description.min'=>'Description product from 10 to 100 digit',
@@ -128,7 +127,7 @@ class ProductController extends Controller
             $product->link_img = $file->getClientOriginalName(); //save name of img
         }
         $product->save();
-        return back();
+        return redirect('/');
     }
 
     /**
