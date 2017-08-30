@@ -40,11 +40,22 @@ class ProductController extends Controller
     {
         // required input
         $this->validate($request,[
-            'name'=>'required|min:3|max:100'
+            'name'=>'required|min:3|max:100',
+            'price'=>'required|unique:products|min:4|numeric',
+            'description'=>'required|min:10|max:100',
+            'imgUrl'=>'required'
         ],[
             'name.required'=>'Type name product please',
             'name.min'=>'Name product from 3 to 100 digit',
             'name.max'=>'Name product from 3 to 100 digit',
+            'price.required'=>'Type price product please',
+            'price.unique:products'=>'unique price please',
+            'price.min'=>'price product from 3 to 100 digit',
+            'price.numeric'=>'Price product wrong type',
+            'description.required'=>'Type description product please',
+            'description.min'=>'Description product from 10 to 100 digit',
+            'description.max'=>'Description product from 10 to 100 digit',
+            'imgUrl.required'=>'Input image for product',
         ]);
        $product  = new Product();
        $product->name = $request->name;
@@ -90,10 +101,26 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
+        $this->validate($request,[
+            'name'=>'required|min:3|max:100',
+            'price'=>'required|unique:products|min:4|numeric',
+            'description'=>'required|min:10|max:100',
+        ],[
+            'name.required'=>'Type name product please',
+            'name.min'=>'Name product from 3 to 100 digit',
+            'name.max'=>'Name product from 3 to 100 digit',
+            'price.required'=>'Type price product please',
+            'price.unique:products'=>'unique price please',
+            'price.min'=>'price product from 3 to 100 digit',
+            'price.numeric'=>'Price product wrong type',
+            'description.required'=>'Type description product please',
+            'description.min'=>'Description product from 10 to 100 digit',
+            'description.max'=>'Description product from 10 to 100 digit',
+        ]);
         $product->name = $request->name;
         $product->price = $request->price;
         $product->description = $request->description;
-        //save file
+        //save file (dont need required cus existed file)
         if ($request->file('imgUrl')) {
             $file = $request->file('imgUrl');
             $destinationPath = 'uploads';

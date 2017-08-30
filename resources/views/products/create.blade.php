@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+
     <div class="container">
     <div class="row">
         {{--menu left--}}
@@ -10,6 +11,21 @@
         </div>
         {{--form--}}
         <div class="col-sm-9 col-sm-9">
+            {{--alert--}}
+            @if(session('message'))
+                <div class="alert-success">
+                    {{session('massage')}}
+                </div>
+            @endif
+            @if(count($errors)>0)
+                <div style="width: 500px; height: auto;border-radius: 3px;padding-left: 10px;" class="alert-danger">
+                    @foreach($errors->all() as $error)
+                        {{$error}}
+                        <br>
+                    @endforeach
+                </div>
+            @endif
+            {{--end alert--}}
             <form class="form-group" action="{{route('products.store')}}" method="post" enctype="multipart/form-data" style="width: 100%">
                 {{csrf_field()}}
                 Name Product: <input class="form-control" type="text" name="name" value="">

@@ -6,7 +6,7 @@
             {{--menu left--}}
             <div class="col-sm-3 col-md-3">
                 <ul style=""> Products
-                    <li><a href="{{route('products.index')}}">Add products</a></li>
+                    <li><a href="{{route('products.create')}}">Add products</a></li>
                 </ul>
             </div>
             {{--content--}}
