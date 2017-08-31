@@ -14,9 +14,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Route::get('/', function () {
-//    return view('products.index');
-//});
-Route::get('/','ProductController@index');
+Route::get('admin', ['middleware'=>'admin',function(){
+    $products = \App\Product::all();
+    return view('products.index',compact('products'));
+}]);
+
+Route::get('/',function (){
+    $products = \App\Product::all();
+    return view('layouts.index',compact('products'));
+});
+
 Route::resource('products','ProductController');
 

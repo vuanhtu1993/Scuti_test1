@@ -67,7 +67,8 @@ class ProductController extends Controller
         $file->move($destinationPath,$file->getClientOriginalName());
         $product->link_img = $file->getClientOriginalName(); //save name of img
         $product->save();
-        return redirect('/');
+        $request->session()->flash('message','Storage successful');
+        return back();
     }
 
     /**
@@ -127,7 +128,7 @@ class ProductController extends Controller
             $product->link_img = $file->getClientOriginalName(); //save name of img
         }
         $product->save();
-        return redirect('/');
+        return redirect('/admin');
     }
 
     /**

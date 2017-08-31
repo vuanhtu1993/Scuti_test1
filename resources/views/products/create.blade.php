@@ -12,10 +12,8 @@
         {{--form--}}
         <div class="col-sm-9 col-sm-9">
             {{--alert--}}
-            @if(session('message'))
-                <div class="alert-success">
-                    {{session('massage')}}
-                </div>
+            @if (session('message'))
+                <div class="alert alert-info">{{session('message')}}</div>
             @endif
             @if(count($errors)>0)
                 <div style="width: 500px; height: auto;border-radius: 3px;padding-left: 10px;" class="alert-danger">
