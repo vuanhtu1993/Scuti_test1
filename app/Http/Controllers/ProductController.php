@@ -128,7 +128,8 @@ class ProductController extends Controller
             $product->link_img = $file->getClientOriginalName(); //save name of img
         }
         $product->save();
-        return redirect('/admin');
+        $request->session()->flash('message','Update successfully');
+        return back();
     }
 
     /**

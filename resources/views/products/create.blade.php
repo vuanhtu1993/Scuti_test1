@@ -16,7 +16,7 @@
                 <div class="alert alert-info">{{session('message')}}</div>
             @endif
             @if(count($errors)>0)
-                <div style="width: 500px; height: auto;border-radius: 3px;padding-left: 10px;" class="alert-danger">
+                <div style="width: 500px; height: auto;border-radius: 3px;padding-left: 10px;" class="alert alert-danger">
                     @foreach($errors->all() as $error)
                         {{$error}}
                         <br>

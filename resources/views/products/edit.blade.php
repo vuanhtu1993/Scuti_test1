@@ -12,12 +12,12 @@
             {{--form edit--}}
             <div class="col-sm-9 col-sm-9">
                 @if(session('message'))
-                    <div class="alert-success">
+                    <div class="alert alert-success">
                         {{session('message')}}
                     </div>
                 @endif
                 @if(count($errors)>0)
-                    <div style="width: 500px; height: auto;border-radius: 3px;padding-left: 10px;" class="alert-danger">
+                    <div style="width: 500px; height: auto;border-radius: 3px;padding-left: 10px;" class="alert alert-danger">
                         @foreach($errors->all() as $error)
                             {{$error}}
                             <br>
