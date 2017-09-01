@@ -60,6 +60,12 @@
                                                      document.getElementById('logout-form').submit();">
                                             Logout
                                         </a>
+                                        <a href="{{route('products.index')}}">
+                                            <?php if (Auth::user() && Auth::user()->isAdmin){
+                                                echo "CRUD";
+                                            }
+                                                ?>
+                                        </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
