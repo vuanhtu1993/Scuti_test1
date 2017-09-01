@@ -18,9 +18,9 @@
                     <div class="products">
                         <img style="width: 270px; height: 170px;" src="uploads/{{$product->link_img}}" alt="">
                         <div class="products-info">
-                            <span><b>{{$product->name}}</b></span> <br>
-                            <span>{{$product->description}}</span> <br>
-                            <span style="color: red">{{$product->price}}</span> <br>
+                            <b> Product: <span>{{$product->name}}</span></b> <br>
+                            Description: <span>{{$product->description}}</span> <br>
+                            Price: <span style="color: red">{{$product->price}}</span> <br>
                         </div>
                         <div class="edit"><a style="color: grey" href="{{route('products.edit',$product->id)}}">Edit</a></div>
                         <div class="delete">

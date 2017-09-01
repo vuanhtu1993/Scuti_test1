@@ -18,6 +18,6 @@ class Admin
         if( \Auth::user() && \Auth::user()->isAdmin){
             return $next($request);
         }
-        return redirect('/');
+        return redirect('/login');
     }
 }

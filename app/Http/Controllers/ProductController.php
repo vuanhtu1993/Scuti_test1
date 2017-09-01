@@ -17,7 +17,7 @@ class ProductController extends Controller
         $products = Product::all();
 
 //        return view('products.index')
-        return view('products/index',compact('products'));
+        return view('products.index',compact('products'));
     }
 
     /**
@@ -48,14 +48,13 @@ class ProductController extends Controller
             'name.required'=>'Type name product please',
             'name.min'=>'Name product from 3 to 100 digit',
             'name.max'=>'Name product from 3 to 100 digit',
-            'name.unique:products'=>'unique price please',
+            'name.unique:products'=>'Existed this name, input another',
             'price.required'=>'Type price product please',
-            'price.min'=>'Price product from 3 to 100 digit',
-            'price.numeric'=>'Price product wrong type',
+            'price.min'=>'Price product at least 4 digit',
+            'price.numeric'=>'Price product is number',
             'description.required'=>'Type description product please',
             'description.min'=>'Description product from 10 to 100 digit',
             'description.max'=>'Description product from 10 to 100 digit',
-            'imgUrl.required'=>'Input image for product',
         ]);
        $product  = new Product();
        $product->name = $request->name;
@@ -64,7 +63,7 @@ class ProductController extends Controller
         //save file
         $file = $request->file('imgUrl');
         $destinationPath = 'uploads';
-        $file->move($destinationPath,$file->getClientOriginalName());
+        $file->move($destinationPath,$file->getClientOriginalName()); //save image to folder
         $product->link_img = $file->getClientOriginalName(); //save name of img
         $product->save();
         $request->session()->flash('message','Storage successful');
@@ -90,7 +89,8 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        return view('products.edit',compact('product'));
+        //echo $product;
+       return view('products.edit',compact('product'));
     }
 
     /**
@@ -110,6 +110,7 @@ class ProductController extends Controller
             'name.required'=>'Type name product please',
             'name.min'=>'Name product from 3 to 100 digit',
             'name.max'=>'Name product from 3 to 100 digit',
+            'name.unique.products'=>'Existed this name, input another',
             'price.required'=>'Type price product please',
             'price.min'=>'Price product from 3 to 100 digit',
             'price.numeric'=>'Price product wrong type',
@@ -141,6 +142,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-        return redirect('products');
+        return redirect('admin');
     }
 }

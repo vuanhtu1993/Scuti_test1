@@ -24,5 +24,8 @@ Route::get('/',function (){
     return view('layouts.index',compact('products'));
 });
 
-Route::resource('products','ProductController');
+Route::group(['middleware'=>'admin'],function (){
+    Route::resource('products','ProductController');
+});
+
 
